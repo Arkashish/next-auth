@@ -1,11 +1,10 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-
-
 export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
-  const isPathPublic = path === "/login" || path === "/signup";
+  const isPathPublic =
+    path === "/login" || path === "/signup" || path === "/verifyemail";
 
   // Retrieve token from cookies
   const token = request.cookies.get("token")?.value || "";
@@ -24,7 +23,7 @@ export function middleware(request: NextRequest) {
 
 // Apply middleware to relevant routes
 export const config = {
-  matcher: ["/", "/profile", "/login", "/signup"],
+  matcher: ["/", "/profile", "/login", "/signup", "/verifyemail"],
 };
 
 // import { jwtVerify } from "jose"; // ✅ Use jose instead of jsonwebtoken
@@ -68,5 +67,3 @@ export const config = {
 // export const config = {
 //   matcher: ["/profile", "/"],
 // };
-
-
