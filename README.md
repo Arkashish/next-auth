@@ -1,36 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🔐 Next.js Authentication App
 
-## Getting Started
+A full-stack authentication system built with **Next.js 13+ (App Router)**, **TypeScript**, **MongoDB**, and **Nodemailer**. Features include:
 
-First, run the development server:
+- User Sign Up / Login
+- Email Verification
+- Password Reset via Email
+- JWT-based Authentication
+- MongoDB for user data storage
+- Mailtrap for email testing
 
-```bash
+---
+
+## 🚀 Tech Stack
+
+- **Frontend**: Next.js 13+, React, Tailwind CSS
+- **Backend**: Node.js (API Routes via App Router), JWT, bcryptjs
+- **Database**: MongoDB (via Mongoose)
+- **Email Service**: Nodemailer + Mailtrap (SMTP testing)
+- **Session/Cookie**: JWT stored in HttpOnly cookies
+
+---
+
+## 📁 Folder Structure
+
+/app ├── login/ ├── signup/ ├── verifyemail/ ├── forgotpassword/ └── changepassword/
+
+/models └── userModel.ts
+
+/api └── users/ ├── login/ ├── signup/ ├── verifyemail/ ├── forgotpassword/ └── changepassword/
+
+/utils └── mailer.ts
+
+/dbConfig └── dbConfig.ts
+
+---
+
+## 🧪 Features
+
+### ✅ User Signup
+
+- Registers user and sends email verification link.
+
+### ✅ User Login
+
+- Verifies credentials and sets JWT token in HttpOnly cookie.
+
+### ✅ Email Verification
+
+- Token-based verification via secure link.
+
+### ✅ Forgot Password
+
+- Sends reset password link to registered email.
+- Password is updated securely using a hashed token.
+
+---
+
+## 🔧 Setup Instructions
+
+### 1. Clone the repo
+
+git clone https://github.com/your-username/next-auth-app.git
+cd next-auth-app
+
+### 2. Install dependencies
+
+npm install
+
+### 3. Set up .env.local
+
+MONGODB_URI=mongodb+srv://<your-mongo-db-uri>
+TOKEN_SECRET=your-secret-key
+DOMAIN=http://localhost:3000
+
+Use Mailtrap for email testing and configure credentials in mailer.ts.
+
+### 4. Run the app
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+📬 Email Testing with Mailtrap
+Go to Mailtrap
+Create a new inbox
+Get your SMTP credentials
+Replace them inside /utils/mailer.ts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+📸 Screens
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Page
 
-## Learn More
+#### /signup - Create new user and verify
 
-To learn more about Next.js, take a look at the following resources:
+#### /login - Login with email & password
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### /verifyemail - Confirms account verification
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+#### /forgotpassword - Sends a reset password email
 
-## Deploy on Vercel
+#### /changepassword - Lets user enter new password
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+#### /profile - Protected page after login
